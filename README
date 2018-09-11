@@ -1,0 +1,9 @@
+测试了不同的搜索方法array,list,tree,binary的搜索用时
+调用cpu time或者waller time 
+注意:
+1.计时支应对serach时间进行计时
+2.接收参数,来决定对那些搜索方式就行计时
+3.接收参数,确定搜索范围
+4.接收参数,确定平均搜索次数
+
+5.使用function pointer,程序整体美观整洁 

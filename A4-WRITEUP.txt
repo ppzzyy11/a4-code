@@ -1,0 +1,140 @@
+			      ____________
+
+			       A4 WRITEUP
+			      ____________
+
+
+- Name: (FILL THIS in)
+- NetID: (THE kauf0095 IN kauf0095@umn.edu)
+
+Answer the questions below according to the lab specification. Write
+your answers directly in this text file and submit it to complete the
+lab.
+
+
+PROBLEM 1: optimized_matrix_trans_mult_vec()
+============================================
+
+  Do your timing study on apollo.cselabs.umn.edu
+
+
+(A) Paste Source Code
+~~~~~~~~~~~~~~~~~~~~~
+
+  Paste a copy of your source code for the function
+  optimized_matrix_trans_mult_vec() below.
+
+
+(B) Timing on Apollo
+~~~~~~~~~~~~~~~~~~~~
+
+  Paste a copy of the results of running `mult_bench' on
+  apollo.cselabs.umn.edu in the space below which shows how your
+  performance optimizations improved on the baseline codes.
+
+
+(C) Optimizations
+~~~~~~~~~~~~~~~~~
+
+  Describe in some detail the optimizations you used to speed the code
+  up.  THE CODE SHOULD CONTAIN SOME COMMENTS already to describe these
+  but in the section below, describe in English the techniques you used
+  to make the code run faster.  Format your descriptions into discrete
+  chunks such as.
+        Optimization 1: Blah bla blah... This should make run
+        faster because yakkety yakeety yak.
+
+        Optimization 2: Blah bla blah... This should make run
+        faster because yakkety yakeety yak.
+
+        ...  Optimization N: Blah bla blah... This should make run
+        faster because yakkety yakeety yak.
+  Full credit solutions will have a least two optimizations.
+
+
+PROBLEM 2: Timing Rows vs Columns
+=================================
+
+  Do your timing study on apollo.cselabs.umn.edu
+
+
+(A) Min Size for Algorithmic Differences
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Determine size of input array does one start to see a measurable
+  difference in the performance of the linear and logarithmic
+  algorithms.  Produce a timing table which includes all algorithms
+  which clearly demonstrates an uptick in the times associated with some
+  while others remain much lower.  Identify what size this appears to be
+  a occur.
+
+
+(B) List vs Array
+~~~~~~~~~~~~~~~~~
+
+  Determine whether the linear array and linked list search remain
+  approximately at the same performance level as size increases to large
+  data or whether one begins to become favorable over other. Determine
+  the approximate size at which this divergence becomes obvious. Discuss
+  reasons WHY this difference arises.
+
+  A:
+  Average time of searching in linked list is much more than in the linear array.
+  //We need table and size here
+  
+  Beacuse of memory jump.
+
+
+(C) Tree vs Array
+~~~~~~~~~~~~~~~~~
+
+  Compare the binary array search and binary tree search on small to
+  very large arrays. Determine if there is a size at which the
+  performance of these two begins to diverge. If so, describe why this
+  might be happening based on your understanding of the data structures
+  and the memory system.
+
+  //we need table and size here
+  Because of memory jump.
+
+(D) OPTIONAL MAKEUP CREDIT
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  If you decided to make use of a table of function pointers/structs
+  which is worth makeup credit, describe your basic design for this
+  below.
+
+  As the code below shows, we have 4 funcion pointers in every kind of functions.
+  For index 0:linear array
+  For index 1:linear linked list
+  For index 2:binary array
+  For index 3:binary tree
+  We use a flag array in main to determain whether to operate on any kind of datastructure or not
+
+//search fucntions pointers array:functions with the same parameters
+int (*search[4])(void*,int,int)=
+{
+    linear_array_search,
+    linkedlist_search,
+    binary_array_search,
+    binary_tree_search,
+};
+
+//make functions
+void* (*make[4])(int)=
+{
+    make_sequential_array,
+    make_sequential_list,
+    make_sequential_array,
+    make_sequential_tree,
+};
+
+//clean functions
+void (*clean[4])(void*)=
+{
+    free,
+    list_free,
+    free,
+    bst_free,
+};
+
